@@ -18,12 +18,14 @@ use App\Http\Controllers\SalesController;
 */
 
 
-
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/category/{category}', [ProductsController::class, 'showCategory']);
+//Route Prefix
+Route::prefix('category')->group(function () {
+    Route::get('/{category}', [ProductsController::class, 'showCategory']);
+});
 
-Route::get('/user/{id}/{name}', [UserController::class, 'showProfile']);
+Route::get('/user/{id}/name/{name}', [UserController::class, 'showProfile']);
 
 Route::get('/sales', [SalesController::class, 'index']);
 
