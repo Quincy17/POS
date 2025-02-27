@@ -25,5 +25,5 @@ Route::get('/category/{category}', [ProductsController::class, 'showCategory']);
 
 Route::get('/user/{id}/{name}', [UserController::class, 'showProfile']);
 
-Route::get('/penjualan', [SalesController::class, 'index']);
+Route::get('/sales', [SalesController::class, 'index']);
 

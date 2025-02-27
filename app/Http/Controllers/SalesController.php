@@ -8,6 +8,6 @@ class SalesController extends Controller
 {
     public function index()
     {
-        return view('penjualan');
+        return view('sales');
     }
 }
