@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SalesController;
 
@@ -19,28 +18,14 @@ use App\Http\Controllers\SalesController;
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [HomeController::class, 'index']);
+
+//Route Prefix
+Route::prefix('category')->group(function () {
+    Route::get('/{category}', [ProductsController::class, 'showCategory']);
 });
 
-Route::get('/home', function () {
-    return view('home');
-});
-
-Route::get('/products', function () {
-    return view('products');
-});
-
-Route::get('/categories', [ProductsController::class, 'index'])->name('categories.index');
-
-Route::prefix('categories')->group(function(){
-    Route::get('/food-beverage', [ProductsController::class, 'foodBeverage'])->name('categories.food-beverage');
-    Route::get('/beauty-health', [ProductsController::class, 'beautyHealth'])->name('categories.beauty-health');
-    Route::get('/home-care', [ProductsController::class, 'homeCare'])->name('categories.home-care');
-    Route::get('/baby-kid', [ProductsController::class, 'babyKid'])->name('categories.baby-kid');
-});
-
-Route::get('/user/{id}/name/{name}', [UserController::class, 'showProfile'])->name('profile');
+Route::get('/user/{id}/name/{name}', [UserController::class, 'showProfile']);
 
 Route::get('/sales', [SalesController::class, 'index']);
 
